@@ -1,0 +1,8 @@
+python eval.py f-BRS-B --checkpoint output/iter_80000/model.pdparams
+GLOG_v=3 python eval.py f-BRS-B --checkpoint output/iter_80000/model.pdparams >& error.log
+python eval.py f-BRS-B --checkpoint /mnt/haoyuying/fbrs_interactive_segmentation/pretrained_models/hrnetw32_ocr128_model.pdparams
+coords = paddle.unsqueeze(paddle.stack([50, 50], axis=0), axis=0).tile([16, 1, 1, 1])
+python eval.py f-BRS-B --checkpoint /mnt/haoyuying/fbrs_interactive_segmentation/pretrained_models/hrnetw32_ocr128_model.pdparams
+CUDA_VISIBLE_DEVICES=0,2 python -u -m paddle.distributed.launch train.py
+python eval.py f-BRS-B --checkpoint model_param/iter_9000_miou84.87/model.pdparams
+python ritm_eval.py f-BRS-B --checkpoint output_2/iter_20000/model.pdparams

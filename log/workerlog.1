@@ -1,0 +1,171 @@
+/mnt/haoyuying/anaconda3/envs/open-mmlab/lib/python3.7/site-packages/pyximport/pyximport.py:51: DeprecationWarning: the imp module is deprecated in favour of importlib; see the module's documentation for alternative uses
+  import imp
+W0416 14:21:45.294158 19772 device_context.cc:362] Please NOTE: device: 1, GPU Compute Capability: 7.0, Driver API Version: 10.2, Runtime API Version: 10.2
+W0416 14:21:45.294211 19772 device_context.cc:372] device: 1, cuDNN Version: 7.6.
+[SKIP] Shape of pretrained params rgb_conv.0.weight doesn't match.(Pretrained: (8, 5, 1, 1), Actual: [8, 6, 1, 1])
+load model success
+Nonbackbone params: ['feature_extractor.aspp.concurent.0.0.weight', 'feature_extractor.aspp.concurent.0.1.bias', 'feature_extractor.aspp.concurent.0.1.weight', 'feature_extractor.aspp.concurent.1.0.weight', 'feature_extractor.aspp.concurent.1.1.bias', 'feature_extractor.aspp.concurent.1.1.weight', 'feature_extractor.aspp.concurent.2.0.weight', 'feature_extractor.aspp.concurent.2.1.bias', 'feature_extractor.aspp.concurent.2.1.weight', 'feature_extractor.aspp.concurent.3.0.weight', 'feature_extractor.aspp.concurent.3.1.bias', 'feature_extractor.aspp.concurent.3.1.weight', 'feature_extractor.aspp.concurent.4.gap.1.weight', 'feature_extractor.aspp.concurent.4.gap.2.bias', 'feature_extractor.aspp.concurent.4.gap.2.weight', 'feature_extractor.aspp.project.0.weight', 'feature_extractor.aspp.project.1.bias', 'feature_extractor.aspp.project.1.weight', 'feature_extractor.head.block.0.body.0.weight', 'feature_extractor.head.block.0.body.1.weight', 'feature_extractor.head.block.0.body.2.bias', 'feature_extractor.head.block.0.body.2.weight', 'feature_extractor.head.block.1.body.0.weight', 'feature_extractor.head.block.1.body.1.weight', 'feature_extractor.head.block.1.body.2.bias', 'feature_extractor.head.block.1.body.2.weight', 'feature_extractor.head.block.2.bias', 'feature_extractor.head.block.2.weight', 'feature_extractor.skip_project.skip_project.0.weight', 'feature_extractor.skip_project.skip_project.1.bias', 'feature_extractor.skip_project.skip_project.1.weight', 'head.layers.0.body.0.weight', 'head.layers.0.body.1.weight', 'head.layers.0.body.2.bias', 'head.layers.0.body.2.weight', 'head.layers.1.body.0.weight', 'head.layers.1.body.1.weight', 'head.layers.1.body.2.bias', 'head.layers.1.body.2.weight', 'head.layers.2.bias', 'head.layers.2.weight', 'rgb_conv.0.bias', 'rgb_conv.0.weight', 'rgb_conv.2.bias', 'rgb_conv.2.weight', 'rgb_conv.3.bias', 'rgb_conv.3.weight']
+I0416 14:21:49.563333 19772 nccl_context.cc:189] init nccl context nranks: 2 local rank: 1 gpu id: 1 ring id: 0
+Loaded 8498 weights with gamma=1.25
+/mnt/haoyuying/anaconda3/envs/open-mmlab/lib/python3.7/site-packages/paddle/nn/layer/norm.py:636: UserWarning: When training, we now always track global mean and variance.
+  "When training, we now always track global mean and variance.")
+Traceback (most recent call last):
+  File "ritm_train.py", line 298, in <module>
+    main()
+  File "ritm_train.py", line 89, in main
+    other_params=other_params)
+  File "ritm_train.py", line 201, in train
+    output = batch_forward(model, images, masks, points)
+  File "ritm_train.py", line 283, in batch_forward
+    prev_output = model(net_input, points)['instances']
+  File "/mnt/haoyuying/anaconda3/envs/open-mmlab/lib/python3.7/site-packages/paddle/fluid/dygraph/layers.py", line 891, in __call__
+    outputs = self.forward(*inputs, **kwargs)
+  File "/mnt/haoyuying/anaconda3/envs/open-mmlab/lib/python3.7/site-packages/paddle/fluid/dygraph/parallel.py", line 489, in forward
+    outputs = self._layers(*inputs, **kwargs)
+  File "/mnt/haoyuying/anaconda3/envs/open-mmlab/lib/python3.7/site-packages/paddle/fluid/dygraph/layers.py", line 891, in __call__
+    outputs = self.forward(*inputs, **kwargs)
+  File "/mnt/haoyuying/ritm_paddle_mac/model.py", line 224, in forward
+    coord_features = self.get_coord_features(image, prev_mask, points)
+  File "/mnt/haoyuying/ritm_paddle_mac/model.py", line 212, in get_coord_features
+    coord_features = self.dist_maps(image, points)
+  File "/mnt/haoyuying/anaconda3/envs/open-mmlab/lib/python3.7/site-packages/paddle/fluid/dygraph/layers.py", line 891, in __call__
+    outputs = self.forward(*inputs, **kwargs)
+  File "/mnt/haoyuying/ritm_paddle_mac/dist_map.py", line 50, in forward
+    return self.get_coord_features(coords, x.shape[0], x.shape[2], x.shape[3])
+  File "/mnt/haoyuying/ritm_paddle_mac/dist_map.py", line 39, in get_coord_features
+    coords[:, 0] += coords[:, 1]
+KeyboardInterrupt
+
+
+--------------------------------------
+C++ Traceback (most recent call last):
+--------------------------------------
+0   paddle::platform::NCCLCommContext::ReleaseNCCLComms()
+1   paddle::platform::NCCLCommImpl::~NCCLCommImpl()
+2   paddle::platform::CUDADeviceContext::~CUDADeviceContext()
+3   paddle::platform::CUDADeviceContext::~CUDADeviceContext()
+4   std::_Sp_counted_base<(__gnu_cxx::_Lock_policy)2>::_M_release()
+5   std::_Sp_counted_ptr<paddle::platform::CUDAContext*, (__gnu_cxx::_Lock_policy)2>::_M_dispose()
+6   paddle::platform::CUDAContext::~CUDAContext()
+7   cublasDestroy_v2
+8   paddle::framework::SignalHandle(char const*, int)
+9   paddle::platform::GetCurrentTraceBackString[abi:cxx11]()
+
+----------------------
+Error Message Summary:
+----------------------
+FatalError: `Segmentation fault` is detected by the operating system.
+  [TimeInfo: *** Aborted at 1618748583 (unix time) try "date -d @1618748583" if you are using GNU date ***]
+  [SignalInfo: *** SIGSEGV (@0x65) received by PID 19772 (TID 0x7f193ed52740) from PID 101 ***]
+
+/mnt/haoyuying/anaconda3/envs/open-mmlab/lib/python3.7/site-packages/pyximport/pyximport.py:51: DeprecationWarning: the imp module is deprecated in favour of importlib; see the module's documentation for alternative uses
+  import imp
+W0418 20:23:38.981578 40170 device_context.cc:362] Please NOTE: device: 1, GPU Compute Capability: 7.0, Driver API Version: 10.2, Runtime API Version: 10.2
+W0418 20:23:38.981626 40170 device_context.cc:372] device: 1, cuDNN Version: 7.6.
+load model success
+Nonbackbone params: ['feature_extractor.aspp.concurent.0.0.weight', 'feature_extractor.aspp.concurent.0.1.bias', 'feature_extractor.aspp.concurent.0.1.weight', 'feature_extractor.aspp.concurent.1.0.weight', 'feature_extractor.aspp.concurent.1.1.bias', 'feature_extractor.aspp.concurent.1.1.weight', 'feature_extractor.aspp.concurent.2.0.weight', 'feature_extractor.aspp.concurent.2.1.bias', 'feature_extractor.aspp.concurent.2.1.weight', 'feature_extractor.aspp.concurent.3.0.weight', 'feature_extractor.aspp.concurent.3.1.bias', 'feature_extractor.aspp.concurent.3.1.weight', 'feature_extractor.aspp.concurent.4.gap.1.weight', 'feature_extractor.aspp.concurent.4.gap.2.bias', 'feature_extractor.aspp.concurent.4.gap.2.weight', 'feature_extractor.aspp.project.0.weight', 'feature_extractor.aspp.project.1.bias', 'feature_extractor.aspp.project.1.weight', 'feature_extractor.head.block.0.body.0.weight', 'feature_extractor.head.block.0.body.1.weight', 'feature_extractor.head.block.0.body.2.bias', 'feature_extractor.head.block.0.body.2.weight', 'feature_extractor.head.block.1.body.0.weight', 'feature_extractor.head.block.1.body.1.weight', 'feature_extractor.head.block.1.body.2.bias', 'feature_extractor.head.block.1.body.2.weight', 'feature_extractor.head.block.2.bias', 'feature_extractor.head.block.2.weight', 'feature_extractor.skip_project.skip_project.0.weight', 'feature_extractor.skip_project.skip_project.1.bias', 'feature_extractor.skip_project.skip_project.1.weight', 'head.layers.0.body.0.weight', 'head.layers.0.body.1.weight', 'head.layers.0.body.2.bias', 'head.layers.0.body.2.weight', 'head.layers.1.body.0.weight', 'head.layers.1.body.1.weight', 'head.layers.1.body.2.bias', 'head.layers.1.body.2.weight', 'head.layers.2.bias', 'head.layers.2.weight', 'rgb_conv.0.bias', 'rgb_conv.0.weight', 'rgb_conv.2.bias', 'rgb_conv.2.weight', 'rgb_conv.3.bias', 'rgb_conv.3.weight']
+I0418 20:23:44.619268 40170 nccl_context.cc:189] init nccl context nranks: 2 local rank: 1 gpu id: 1 ring id: 0
+Loaded 8498 weights with gamma=1.25
+/mnt/haoyuying/anaconda3/envs/open-mmlab/lib/python3.7/site-packages/paddle/nn/layer/norm.py:636: UserWarning: When training, we now always track global mean and variance.
+  "When training, we now always track global mean and variance.")
+Traceback (most recent call last):
+  File "ritm_train.py", line 298, in <module>
+    main()
+  File "ritm_train.py", line 89, in main
+    other_params=other_params)
+  File "ritm_train.py", line 201, in train
+    output = batch_forward(model, images, masks, points)
+  File "ritm_train.py", line 283, in batch_forward
+    prev_output = model(net_input, points)['instances']
+  File "/mnt/haoyuying/anaconda3/envs/open-mmlab/lib/python3.7/site-packages/paddle/fluid/dygraph/layers.py", line 891, in __call__
+    outputs = self.forward(*inputs, **kwargs)
+  File "/mnt/haoyuying/anaconda3/envs/open-mmlab/lib/python3.7/site-packages/paddle/fluid/dygraph/parallel.py", line 492, in forward
+    list(self._find_varbase(outputs)))
+RuntimeError: (PreconditionNotMet) Please note that all ``forward`` outputs derived from the module parameters must participate in the calculation of losses and subsequent gradient calculations. If not, the wrapper will hang, waiting for autograd to generate gradients for these parameters. you can use detach or stop_gradient to make the unused parameters detached from the autograd graph.
+  [Hint: Expected all_group_ready_ == false, but received all_group_ready_:1 != false:0.] (at /paddle/paddle/fluid/imperative/reducer.cc:312)
+
+terminate called without an active exception
+
+
+--------------------------------------
+C++ Traceback (most recent call last):
+--------------------------------------
+0   paddle::framework::SignalHandle(char const*, int)
+1   paddle::platform::GetCurrentTraceBackString[abi:cxx11]()
+
+----------------------
+Error Message Summary:
+----------------------
+FatalError: `Process abort signal` is detected by the operating system.
+  [TimeInfo: *** Aborted at 1618748638 (unix time) try "date -d @1618748638" if you are using GNU date ***]
+  [SignalInfo: *** SIGABRT (@0x3f600009cea) received by PID 40170 (TID 0x7f847d235700) from PID 40170 ***]
+
+/mnt/haoyuying/anaconda3/envs/open-mmlab/lib/python3.7/site-packages/pyximport/pyximport.py:51: DeprecationWarning: the imp module is deprecated in favour of importlib; see the module's documentation for alternative uses
+  import imp
+W0418 20:36:27.010259  2316 device_context.cc:362] Please NOTE: device: 1, GPU Compute Capability: 7.0, Driver API Version: 10.2, Runtime API Version: 10.2
+W0418 20:36:27.010318  2316 device_context.cc:372] device: 1, cuDNN Version: 7.6.
+load model success
+Nonbackbone params: ['feature_extractor.aspp.concurent.0.0.weight', 'feature_extractor.aspp.concurent.0.1.bias', 'feature_extractor.aspp.concurent.0.1.weight', 'feature_extractor.aspp.concurent.1.0.weight', 'feature_extractor.aspp.concurent.1.1.bias', 'feature_extractor.aspp.concurent.1.1.weight', 'feature_extractor.aspp.concurent.2.0.weight', 'feature_extractor.aspp.concurent.2.1.bias', 'feature_extractor.aspp.concurent.2.1.weight', 'feature_extractor.aspp.concurent.3.0.weight', 'feature_extractor.aspp.concurent.3.1.bias', 'feature_extractor.aspp.concurent.3.1.weight', 'feature_extractor.aspp.concurent.4.gap.1.weight', 'feature_extractor.aspp.concurent.4.gap.2.bias', 'feature_extractor.aspp.concurent.4.gap.2.weight', 'feature_extractor.aspp.project.0.weight', 'feature_extractor.aspp.project.1.bias', 'feature_extractor.aspp.project.1.weight', 'feature_extractor.head.block.0.body.0.weight', 'feature_extractor.head.block.0.body.1.weight', 'feature_extractor.head.block.0.body.2.bias', 'feature_extractor.head.block.0.body.2.weight', 'feature_extractor.head.block.1.body.0.weight', 'feature_extractor.head.block.1.body.1.weight', 'feature_extractor.head.block.1.body.2.bias', 'feature_extractor.head.block.1.body.2.weight', 'feature_extractor.head.block.2.bias', 'feature_extractor.head.block.2.weight', 'feature_extractor.skip_project.skip_project.0.weight', 'feature_extractor.skip_project.skip_project.1.bias', 'feature_extractor.skip_project.skip_project.1.weight', 'head.layers.0.body.0.weight', 'head.layers.0.body.1.weight', 'head.layers.0.body.2.bias', 'head.layers.0.body.2.weight', 'head.layers.1.body.0.weight', 'head.layers.1.body.1.weight', 'head.layers.1.body.2.bias', 'head.layers.1.body.2.weight', 'head.layers.2.bias', 'head.layers.2.weight', 'rgb_conv.0.bias', 'rgb_conv.0.weight', 'rgb_conv.2.bias', 'rgb_conv.2.weight', 'rgb_conv.3.bias', 'rgb_conv.3.weight']
+I0418 20:36:32.075129  2316 nccl_context.cc:189] init nccl context nranks: 2 local rank: 1 gpu id: 1 ring id: 0
+Loaded 8498 weights with gamma=1.25
+/mnt/haoyuying/anaconda3/envs/open-mmlab/lib/python3.7/site-packages/paddle/nn/layer/norm.py:636: UserWarning: When training, we now always track global mean and variance.
+  "When training, we now always track global mean and variance.")
+[WARNING 2021-04-20 14:48:00,369 dataloader_iter.py:346] DataLoader reader thread raised an exception.
+Exception in thread Thread-127:
+Traceback (most recent call last):
+  File "/mnt/haoyuying/anaconda3/envs/open-mmlab/lib/python3.7/threading.py", line 926, in _bootstrap_inner
+    self.run()
+  File "/mnt/haoyuying/anaconda3/envs/open-mmlab/lib/python3.7/threading.py", line 870, in run
+    self._target(*self._args, **self._kwargs)
+  File "/mnt/haoyuying/anaconda3/envs/open-mmlab/lib/python3.7/site-packages/paddle/fluid/dataloader/dataloader_iter.py", line 347, in _thread_loop
+    six.reraise(*sys.exc_info())
+  File "/mnt/haoyuying/anaconda3/envs/open-mmlab/lib/python3.7/site-packages/six.py", line 703, in reraise
+    raise value
+  File "/mnt/haoyuying/anaconda3/envs/open-mmlab/lib/python3.7/site-packages/paddle/fluid/dataloader/dataloader_iter.py", line 317, in _thread_loop
+    batch = self._dataset_fetcher.fetch(indices)
+  File "/mnt/haoyuying/anaconda3/envs/open-mmlab/lib/python3.7/site-packages/paddle/fluid/dataloader/fetcher.py", line 60, in fetch
+    data = [self.dataset[idx] for idx in batch_indices]
+  File "/mnt/haoyuying/anaconda3/envs/open-mmlab/lib/python3.7/site-packages/paddle/fluid/dataloader/fetcher.py", line 60, in <listcomp>
+    data = [self.dataset[idx] for idx in batch_indices]
+  File "/mnt/haoyuying/ritm_paddle_mac/data/base.py", line 71, in __getitem__
+    sample = self.get_sample(item)
+  File "/mnt/haoyuying/ritm_paddle_mac/data/sbd.py", line 33, in get_sample
+    image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
+cv2.error: OpenCV(4.5.1) /tmp/pip-req-build-tk9iuyva/opencv/modules/imgproc/src/color.cpp:182: error: (-215:Assertion failed) !_src.empty() in function 'cvtColor'
+
+
+Traceback (most recent call last):
+  File "ritm_train.py", line 298, in <module>
+    main()
+  File "ritm_train.py", line 89, in main
+    other_params=other_params)
+  File "ritm_train.py", line 188, in train
+    for data in loader:
+  File "/mnt/haoyuying/anaconda3/envs/open-mmlab/lib/python3.7/site-packages/paddle/fluid/dataloader/dataloader_iter.py", line 365, in __next__
+    return self._reader.read_next_var_list()
+SystemError: (Fatal) Blocking queue is killed because the data reader raises an exception.
+  [Hint: Expected killed_ != true, but received killed_:1 == true:1.] (at /paddle/paddle/fluid/operators/reader/blocking_queue.h:158)
+
+
+
+--------------------------------------
+C++ Traceback (most recent call last):
+--------------------------------------
+0   paddle::platform::NCCLCommContext::ReleaseNCCLComms()
+1   paddle::platform::NCCLCommImpl::~NCCLCommImpl()
+2   paddle::platform::CUDADeviceContext::~CUDADeviceContext()
+3   paddle::platform::CUDADeviceContext::~CUDADeviceContext()
+4   std::_Sp_counted_base<(__gnu_cxx::_Lock_policy)2>::_M_release()
+5   std::_Sp_counted_ptr<paddle::platform::CUDAContext*, (__gnu_cxx::_Lock_policy)2>::_M_dispose()
+6   paddle::platform::CUDAContext::~CUDAContext()
+7   cublasDestroy_v2
+8   paddle::framework::SignalHandle(char const*, int)
+9   paddle::platform::GetCurrentTraceBackString[abi:cxx11]()
+
+----------------------
+Error Message Summary:
+----------------------
+FatalError: `Segmentation fault` is detected by the operating system.
+  [TimeInfo: *** Aborted at 1618901302 (unix time) try "date -d @1618901302" if you are using GNU date ***]
+  [SignalInfo: *** SIGSEGV (@0x65) received by PID 2316 (TID 0x7fd093ced740) from PID 101 ***]
+

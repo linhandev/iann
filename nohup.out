@@ -1,0 +1,118 @@
+WARNING 2021-04-12 20:46:21,196 launch.py:316] Not found distinct arguments and compiled with cuda. Default use collective mode
+INFO 2021-04-12 20:46:21,197 launch_utils.py:471] Local start 4 processes. First process distributed environment info (Only For Debug): 
+    +=======================================================================================+
+    |                        Distributed Envs                      Value                    |
+    +---------------------------------------------------------------------------------------+
+    |                       PADDLE_TRAINER_ID                        0                      |
+    |                 PADDLE_CURRENT_ENDPOINT                 127.0.0.1:42443               |
+    |                     PADDLE_TRAINERS_NUM                        4                      |
+    |                PADDLE_TRAINER_ENDPOINTS  ... 0.1:45053,127.0.0.1:43141,127.0.0.1:36519|
+    |                     FLAGS_selected_gpus                        0                      |
+    +=======================================================================================+
+
+INFO 2021-04-12 20:46:21,197 launch_utils.py:475] details abouts PADDLE_TRAINER_ENDPOINTS can be found in log/endpoints.log, and detail running logs maybe found in log/workerlog.0
+Traceback (most recent call last):
+  File "/mnt/haoyuying/anaconda3/envs/open-mmlab/lib/python3.7/runpy.py", line 193, in _run_module_as_main
+    "__main__", mod_spec)
+  File "/mnt/haoyuying/anaconda3/envs/open-mmlab/lib/python3.7/runpy.py", line 85, in _run_code
+    exec(code, run_globals)
+  File "/mnt/haoyuying/anaconda3/envs/open-mmlab/lib/python3.7/site-packages/paddle/distributed/launch.py", line 16, in <module>
+    launch.launch()
+  File "/mnt/haoyuying/anaconda3/envs/open-mmlab/lib/python3.7/site-packages/paddle/distributed/fleet/launch.py", line 328, in launch
+    launch_collective(args)
+  File "/mnt/haoyuying/anaconda3/envs/open-mmlab/lib/python3.7/site-packages/paddle/distributed/fleet/launch.py", line 244, in launch_collective
+    time.sleep(3)
+KeyboardInterrupt
+-----------  Configuration Arguments -----------
+gpus: None
+heter_worker_num: None
+heter_workers: 
+http_port: None
+ips: 127.0.0.1
+log_dir: log
+nproc_per_node: None
+server_num: None
+servers: 
+training_script: ritm_train.py
+training_script_args: []
+worker_num: None
+workers: 
+------------------------------------------------
+launch train in GPU mode
+/mnt/haoyuying/anaconda3/envs/open-mmlab/lib/python3.7/site-packages/pyximport/pyximport.py:51: DeprecationWarning: the imp module is deprecated in favour of importlib; see the module's documentation for alternative uses
+  import imp
+2021-04-12 20:46:23 [INFO]	
+------------Environment Information-------------
+platform: Linux-3.10.0-1127.8.2.el7.x86_64-x86_64-with-centos-7.8.2003-Core
+Python: 3.7.9 (default, Aug 31 2020, 12:42:55) [GCC 7.3.0]
+Paddle compiled with cuda: True
+NVCC: Cuda compilation tools, release 10.2, V10.2.89
+cudnn: 7.6
+GPUs used: 4
+CUDA_VISIBLE_DEVICES: None
+GPU: ['GPU 0: Tesla V100-SXM2-16GB', 'GPU 1: Tesla V100-SXM2-16GB', 'GPU 2: Tesla V100-SXM2-16GB', 'GPU 3: Tesla V100-SXM2-16GB']
+GCC: gcc (GCC) 4.8.5 20150623 (Red Hat 4.8.5-39)
+PaddlePaddle: 2.0.0
+OpenCV: 4.5.1
+------------------------------------------------
+W0412 20:46:23.251375 39094 device_context.cc:362] Please NOTE: device: 0, GPU Compute Capability: 7.0, Driver API Version: 10.2, Runtime API Version: 10.2
+W0412 20:46:23.251416 39094 device_context.cc:372] device: 0, cuDNN Version: 7.6.
+Nonbackbone params: ['feature_extractor.aux_head.0.bias', 'feature_extractor.aux_head.0.weight', 'feature_extractor.aux_head.1.bias', 'feature_extractor.aux_head.1.weight', 'feature_extractor.aux_head.3.bias', 'feature_extractor.aux_head.3.weight', 'feature_extractor.cls_head.bias', 'feature_extractor.cls_head.weight', 'feature_extractor.conv3x3_ocr.0.bias', 'feature_extractor.conv3x3_ocr.0.weight', 'feature_extractor.conv3x3_ocr.1.bias', 'feature_extractor.conv3x3_ocr.1.weight', 'feature_extractor.ocr_distri_head.conv_bn_dropout.0.weight', 'feature_extractor.ocr_distri_head.conv_bn_dropout.1.0.bias', 'feature_extractor.ocr_distri_head.conv_bn_dropout.1.0.weight', 'feature_extractor.ocr_distri_head.object_context_block.f_down.0.weight', 'feature_extractor.ocr_distri_head.object_context_block.f_down.1.0.bias', 'feature_extractor.ocr_distri_head.object_context_block.f_down.1.0.weight', 'feature_extractor.ocr_distri_head.object_context_block.f_object.0.weight', 'feature_extractor.ocr_distri_head.object_context_block.f_object.1.0.bias', 'feature_extractor.ocr_distri_head.object_context_block.f_object.1.0.weight', 'feature_extractor.ocr_distri_head.object_context_block.f_object.2.weight', 'feature_extractor.ocr_distri_head.object_context_block.f_object.3.0.bias', 'feature_extractor.ocr_distri_head.object_context_block.f_object.3.0.weight', 'feature_extractor.ocr_distri_head.object_context_block.f_pixel.0.weight', 'feature_extractor.ocr_distri_head.object_context_block.f_pixel.1.0.bias', 'feature_extractor.ocr_distri_head.object_context_block.f_pixel.1.0.weight', 'feature_extractor.ocr_distri_head.object_context_block.f_pixel.2.weight', 'feature_extractor.ocr_distri_head.object_context_block.f_pixel.3.0.bias', 'feature_extractor.ocr_distri_head.object_context_block.f_pixel.3.0.weight', 'feature_extractor.ocr_distri_head.object_context_block.f_up.0.weight', 'feature_extractor.ocr_distri_head.object_context_block.f_up.1.0.bias', 'feature_extractor.ocr_distri_head.object_context_block.f_up.1.0.weight', 'rgb_conv.0.bias', 'rgb_conv.0.weight', 'rgb_conv.2.bias', 'rgb_conv.2.weight', 'rgb_conv.3.bias', 'rgb_conv.3.weight']
+load model success
+W0412 20:46:28.594578 39094 nccl_context.cc:142] Socket connect worker 127.0.0.1:43141 failed, try again after 3 seconds.
+I0412 20:46:31.594903 39094 nccl_context.cc:189] init nccl context nranks: 4 local rank: 0 gpu id: 0 ring id: 0
+Loaded 8498 weights with gamma=1.25
+WARNING 2021-04-12 20:47:12,577 launch.py:316] Not found distinct arguments and compiled with cuda. Default use collective mode
+INFO 2021-04-12 20:47:12,579 launch_utils.py:471] Local start 4 processes. First process distributed environment info (Only For Debug): 
+    +=======================================================================================+
+    |                        Distributed Envs                      Value                    |
+    +---------------------------------------------------------------------------------------+
+    |                       PADDLE_TRAINER_ID                        0                      |
+    |                 PADDLE_CURRENT_ENDPOINT                 127.0.0.1:53185               |
+    |                     PADDLE_TRAINERS_NUM                        4                      |
+    |                PADDLE_TRAINER_ENDPOINTS  ... 0.1:39561,127.0.0.1:47539,127.0.0.1:40030|
+    |                     FLAGS_selected_gpus                        0                      |
+    +=======================================================================================+
+
+INFO 2021-04-12 20:47:12,579 launch_utils.py:475] details abouts PADDLE_TRAINER_ENDPOINTS can be found in log/endpoints.log, and detail running logs maybe found in log/workerlog.0
+INFO 2021-04-12 20:49:36,804 launch_utils.py:307] terminate all the procs
+ERROR 2021-04-12 20:49:36,804 launch_utils.py:545] ABORT!!! Out of all 4 trainers, the trainer process with rank=[0] was aborted. Please check its log.
+INFO 2021-04-12 20:49:39,805 launch_utils.py:307] terminate all the procs
+-----------  Configuration Arguments -----------
+gpus: None
+heter_worker_num: None
+heter_workers: 
+http_port: None
+ips: 127.0.0.1
+log_dir: log
+nproc_per_node: None
+server_num: None
+servers: 
+training_script: ritm_train.py
+training_script_args: []
+worker_num: None
+workers: 
+------------------------------------------------
+launch train in GPU mode
+/mnt/haoyuying/anaconda3/envs/open-mmlab/lib/python3.7/site-packages/pyximport/pyximport.py:51: DeprecationWarning: the imp module is deprecated in favour of importlib; see the module's documentation for alternative uses
+  import imp
+2021-04-12 20:47:14 [INFO]	
+------------Environment Information-------------
+platform: Linux-3.10.0-1127.8.2.el7.x86_64-x86_64-with-centos-7.8.2003-Core
+Python: 3.7.9 (default, Aug 31 2020, 12:42:55) [GCC 7.3.0]
+Paddle compiled with cuda: True
+NVCC: Cuda compilation tools, release 10.2, V10.2.89
+cudnn: 7.6
+GPUs used: 4
+CUDA_VISIBLE_DEVICES: None
+GPU: ['GPU 0: Tesla V100-SXM2-16GB', 'GPU 1: Tesla V100-SXM2-16GB', 'GPU 2: Tesla V100-SXM2-16GB', 'GPU 3: Tesla V100-SXM2-16GB']
+GCC: gcc (GCC) 4.8.5 20150623 (Red Hat 4.8.5-39)
+PaddlePaddle: 2.0.0
+OpenCV: 4.5.1
+------------------------------------------------
+W0412 20:47:14.489632 40229 device_context.cc:362] Please NOTE: device: 0, GPU Compute Capability: 7.0, Driver API Version: 10.2, Runtime API Version: 10.2
+W0412 20:47:14.489687 40229 device_context.cc:372] device: 0, cuDNN Version: 7.6.
+Nonbackbone params: ['feature_extractor.aux_head.0.bias', 'feature_extractor.aux_head.0.weight', 'feature_extractor.aux_head.1.bias', 'feature_extractor.aux_head.1.weight', 'feature_extractor.aux_head.3.bias', 'feature_extractor.aux_head.3.weight', 'feature_extractor.cls_head.bias', 'feature_extractor.cls_head.weight', 'feature_extractor.conv3x3_ocr.0.bias', 'feature_extractor.conv3x3_ocr.0.weight', 'feature_extractor.conv3x3_ocr.1.bias', 'feature_extractor.conv3x3_ocr.1.weight', 'feature_extractor.ocr_distri_head.conv_bn_dropout.0.weight', 'feature_extractor.ocr_distri_head.conv_bn_dropout.1.0.bias', 'feature_extractor.ocr_distri_head.conv_bn_dropout.1.0.weight', 'feature_extractor.ocr_distri_head.object_context_block.f_down.0.weight', 'feature_extractor.ocr_distri_head.object_context_block.f_down.1.0.bias', 'feature_extractor.ocr_distri_head.object_context_block.f_down.1.0.weight', 'feature_extractor.ocr_distri_head.object_context_block.f_object.0.weight', 'feature_extractor.ocr_distri_head.object_context_block.f_object.1.0.bias', 'feature_extractor.ocr_distri_head.object_context_block.f_object.1.0.weight', 'feature_extractor.ocr_distri_head.object_context_block.f_object.2.weight', 'feature_extractor.ocr_distri_head.object_context_block.f_object.3.0.bias', 'feature_extractor.ocr_distri_head.object_context_block.f_object.3.0.weight', 'feature_extractor.ocr_distri_head.object_context_block.f_pixel.0.weight', 'feature_extractor.ocr_distri_head.object_context_block.f_pixel.1.0.bias', 'feature_extractor.ocr_distri_head.object_context_block.f_pixel.1.0.weight', 'feature_extractor.ocr_distri_head.object_context_block.f_pixel.2.weight', 'feature_extractor.ocr_distri_head.object_context_block.f_pixel.3.0.bias', 'feature_extractor.ocr_distri_head.object_context_block.f_pixel.3.0.weight', 'feature_extractor.ocr_distri_head.object_context_block.f_up.0.weight', 'feature_extractor.ocr_distri_head.object_context_block.f_up.1.0.bias', 'feature_extractor.ocr_distri_head.object_context_block.f_up.1.0.weight', 'rgb_conv.0.bias', 'rgb_conv.0.weight', 'rgb_conv.2.bias', 'rgb_conv.2.weight', 'rgb_conv.3.bias', 'rgb_conv.3.weight']
+load model success
+I0412 20:47:20.593410 40229 nccl_context.cc:189] init nccl context nranks: 4 local rank: 0 gpu id: 0 ring id: 0
+Loaded 8498 weights with gamma=1.25
