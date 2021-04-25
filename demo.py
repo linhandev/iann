@@ -14,7 +14,7 @@ def main():
     #model = get_hrnet_model(width=18, ocr_width=64, small=True, with_aux_output=True, is_ritm=True,cpu_dist_maps=True)
     model = get_deeplab_model(backbone='resnet18', is_ritm=True, cpu_dist_maps=True)
 
-    para_state_dict = paddle.load('/home/aistudio/git/paddle/ritm/human_best/resnet18_ritm_95.5/model.pdparams')
+    para_state_dict = paddle.load('hand\iter_1001\model.pdparams')
     model.set_dict(para_state_dict)
     print('Loaded trained params of model successfully')
     model.eval()

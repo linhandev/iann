@@ -15,7 +15,7 @@ from albumentations import (
 )
 from data.points_sampler import MultiPointSampler
 #from data.points_sampler_ritm import MultiPointSampler
-from data.sbd import SBDDataset
+from data.davis import DavisDataset
 from loss import *
 from utils import *
 from paddleseg.utils import get_sys_env, logger
@@ -25,20 +25,20 @@ from visualdl import LogWriter
 def parse_args():
     parser = argparse.ArgumentParser()
 
-    parser.add_argument('--max_iters', type=int, default=40001,
+    parser.add_argument('--max_iters', type=int, default=1001,
                         help='The number of the starting epoch from which training will continue. '
                              '(it is important for correct logging and learning rate)')
 
     parser.add_argument('--workers', type=int, default=4,
                         metavar='N', help='Dataloader threads.')
 
-    parser.add_argument('--batch_size', type=int, default=32,
+    parser.add_argument('--batch_size', type=int, default=4,
                         help='You can override model batch size by specify positive number.')
 
     parser.add_argument('--weights', type=str, default=None,
                         help='Model weights will be loaded from the specified path if you use this argument.')
 
-    parser.add_argument('--use_vdl', type=bool, default=True,
+    parser.add_argument('--use_vdl', type=bool, default=False,
                         help='Whether to use visual dl.')
 
     return parser.parse_args()
@@ -74,7 +74,7 @@ def main():
     #model = get_shufflenet_model()
     #model.load_weights('/mnt/haoyuying/ritm_paddle_mac/pretrained/shufflenet_humanseg.pdparams')
     model = get_deeplab_model(backbone='resnet18', is_ritm=True)
-    model.load_weights('/mnt/haoyuying/ritm_paddle_mac/resnet18/ritm_90.42/model.pdparams')
+    #model.load_weights('human_best/resnet18_ritm_95.5/model.pdparams')
     #model.load_weights('/mnt/haoyuying/fbrs_interactive_segmentation/pretrained_models/hrnetv2_w18_imagenet_model.pdparams')
     backbone_params, other_params = model.get_trainable_params()
     #model.load_weights('/mnt/haoyuying/fbrs_paddle/output_1/iter_11000_89.04/model.pdparams')
@@ -91,7 +91,7 @@ def main():
         train(model, cfg, model_cfg, max_iters=cfg.max_iters, backbone_params=backbone_params,
               other_params=other_params)
 
-def train(model, cfg, model_cfg, max_iters, save_epoch=10, save_dir='resnet18', backbone_params=None,
+def train(model, cfg, model_cfg, max_iters, save_epoch=10, save_dir='hand', backbone_params=None,
           other_params=None):
     local_rank = paddle.distributed.ParallelEnv().local_rank
     cfg.batch_size = 16 if cfg.batch_size < 1 else cfg.batch_size
@@ -123,9 +123,8 @@ def train(model, cfg, model_cfg, max_iters, save_epoch=10, save_dir='resnet18', 
     points_sampler = MultiPointSampler(model_cfg.num_max_points, prob_gamma=0.7,
                                        merge_objects_prob=0.15,
                                        max_num_merged_objects=2)
-    trainset = SBDDataset(
-        './datasets/SBD',
-        split='train',
+    trainset = DavisDataset(
+        './datasets/egoHands',
         num_masks=num_masks,
         augmentator=train_augmentator,
         points_from_one_object=False,
@@ -138,9 +137,8 @@ def train(model, cfg, model_cfg, max_iters, save_epoch=10, save_dir='resnet18', 
         samples_scores_gamma=1.25
     )
 
-    valset = SBDDataset(
-        './datasets/SBD',
-        split='val',
+    valset = DavisDataset(
+        './datasets/egoHands',
         augmentator=val_augmentator,
         num_masks=num_masks,
         points_from_one_object=False,
@@ -228,7 +226,6 @@ def train(model, cfg, model_cfg, max_iters, save_epoch=10, save_dir='resnet18', 
                     log_writer.add_scalar('Train/loss', avg_loss, iters)
                     log_writer.add_scalar('Train/lr', lr, iters)
                 avg_loss = 0.0
-
             if (iters % save_interval == 0 or iters == max_iters) and local_rank == 0:
                 model.eval()
                 total_len = len(val_loader)
